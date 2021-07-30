@@ -5,6 +5,7 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
+#include "autoware_vehicle_msgs/msg/vehicle_command.hpp"
 
 using namespace std::chrono_literals;
 
@@ -21,6 +22,7 @@ class Texplorer : public rclcpp::Node
     rclcpp::SubscriptionBase::SharedPtr universal_sub_;
     void Init();
     void timer_callback();
+    void callbackFromCmd(const autoware_vehicle_msgs::msg::VehicleCommand::SharedPtr _msg);
     rclcpp::TimerBase::SharedPtr timer_;
     //rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
     std::map<std::string, std::vector<std::string>> topiclist_;

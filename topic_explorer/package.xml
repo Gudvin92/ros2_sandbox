@@ -18,6 +18,7 @@
   </export>
   <depend>rclcpp</depend>
   <depend>geometry_msgs</depend>
+  <depend>autoware_vehicle_msgs</depend>
   <depend>tf2_ros</depend>
 
 <!--   <depend>turtlesim</depend> -->

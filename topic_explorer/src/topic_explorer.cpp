@@ -1,4 +1,6 @@
 #include"topic_explorer.h"
+#include <iostream>
+#include <fstream>
 
     Texplorer::Texplorer(): Node("topic_explorer_node"), count_(0)
     {
@@ -9,6 +11,8 @@
     }
 
     void Texplorer::Init(){
+            universal_sub_ = create_subscription<autoware_vehicle_msgs::msg::VehicleCommand>(
+            "/control/vehicle_cmd", 10, std::bind(&Texplorer::callbackFromCmd, this, std::placeholders::_1));; 
 
           topiclist_ = get_topic_names_and_types();
 
@@ -19,7 +23,7 @@
           int topicnum = topiclist_.size();
           print_map(topiclist_);
           print_map(inverse_map);
-        // universal_sub_ = ;
+
     }
 
     void Texplorer::timer_callback(){
@@ -38,4 +42,13 @@
         std::cout << key.at(0) << " = " << value << "; " << std::endl;
         }
     }
- 
+
+     void Texplorer::callbackFromCmd(const autoware_vehicle_msgs::msg::VehicleCommand::SharedPtr _msg) 
+    {
+        std::ofstream outf("ExtractText.txt", std::ios::app);
+
+        outf << "acc = " << _msg->control.acceleration
+            << " vel = " << _msg->control.velocity 
+            << " steer = " << _msg->control.steering_angle << std::endl;
+       // std::cout >> "callback" >>std::endl;
+    }

@@ -19,6 +19,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(autoware_vehicle_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
 
 # find_package(turtlesim REQUIRED)
@@ -40,6 +41,7 @@ nodes/topic_explorer_node.cpp
 ament_target_dependencies(topic_explorer_node 
 rclcpp 
 geometry_msgs
+autoware_vehicle_msgs
 tf2_ros )
 target_include_directories(topic_explorer_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
