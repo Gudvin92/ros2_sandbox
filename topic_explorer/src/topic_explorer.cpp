@@ -45,10 +45,11 @@
 
      void Texplorer::callbackFromCmd(const autoware_vehicle_msgs::msg::VehicleCommand::SharedPtr _msg) 
     {
+        //std::cout << "callback" << std::endl;
         std::ofstream outf("ExtractText.txt", std::ios::app);
 
         outf << "acc = " << _msg->control.acceleration
             << " vel = " << _msg->control.velocity 
             << " steer = " << _msg->control.steering_angle << std::endl;
-       // std::cout >> "callback" >>std::endl;
+        //
     }
